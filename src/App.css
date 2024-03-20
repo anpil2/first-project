@@ -11,3 +11,13 @@
   display: flex;
   justify-content: center;
 }
+
+.box-win {
+  border: 1px solid green;
+  width: 500px;
+}
+
+.box-lose {
+  border: 1px solid red;
+  width: 500px;
+}

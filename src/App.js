@@ -26,15 +26,70 @@ const choice = {
 
 function App() {
   const [userSelect, setUserSelect] = useState(null);
+  const [computerSelect, setComputerSelect] = useState(null);
+  const [userResult, setUserResult] = useState("");
+  const [computerResult, setComputerResult] = useState("");
+  const [userClassName, setUserClassName] = useState(null);
+  const [computerClassName, setComputerClassName] = useState(null);
+
   const play = (userChoice) => {
     setUserSelect(choice[userChoice]);
+    let computerChoice = randomChoice();
+    setComputerSelect(computerChoice);
+    setUserResult(userJudgement(choice[userChoice], computerChoice));
+    setComputerResult(computerJudgement(choice[userChoice], computerChoice));
+    setUserClassName(className(userJudgement(choice[userChoice], computerChoice)));
+    setComputerClassName(className(computerJudgement(choice[userChoice], computerChoice)));
+
+  }
+
+  const userJudgement = (user, computer) => {
+    if (user.name == computer.name) {
+      return "TIE"
+    } else if (user.name == "Rock") {
+      return computer.name == "Scissors" ? "WIN" : "LOSE";
+    } else if (user.name == "Scissors") {
+      return computer.name == "Paper" ? "WIN" : "LOSE";
+    } else if (user.name == "Paper") {
+      return computer.name == "Rock" ? "WIN" : "LOSE";
+    }
+  }
+
+  const computerJudgement = (user, computer) => {
+    if (user.name == computer.name) {
+      return "TIE"
+    } else if (computer.name == "Rock") {
+      return user.name == "Scissors" ? "WIN" : "LOSE";
+    } else if (computer.name == "Scissors") {
+      return user.name == "Paper" ? "WIN" : "LOSE";
+    } else if (computer.name == "Paper") {
+      return user.name == "Rock" ? "WIN" : "LOSE";
+    }
+  }
+
+  const className = (judgement) => {
+    console.log("judgement", judgement);
+    if (judgement == "WIN") {
+      return "box-win"
+    } else if (judgement == "LOSE") {
+      return "box-lose"
+    } else {
+      return "box"
+    }
+  }
+
+  const randomChoice = () => {
+    let itemArray = Object.keys(choice);  //객체의 키값을 배열로 만들어 줌    
+    let randomItem = Math.floor(Math.random() * itemArray.length);
+    let final = itemArray[randomItem];
+    return choice[final];
   }
 
   return (
     <div>
       <div className="main">
-        <Box title="You" item={userSelect} />
-        {/* <Box title="Computer" /> */}
+        <Box title="You" item={userSelect} result={userResult} className={userClassName} />
+        <Box title="Computer" item={computerSelect} result={computerResult} className={computerClassName} />
       </div>
       <div className='main'>
         <button onClick={() => play("scissors")}>가위</button>
