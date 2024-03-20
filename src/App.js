@@ -44,34 +44,34 @@ function App() {
   }
 
   const userJudgement = (user, computer) => {
-    if (user.name == computer.name) {
+    if (user.name === computer.name) {
       return "TIE"
-    } else if (user.name == "Rock") {
-      return computer.name == "Scissors" ? "WIN" : "LOSE";
-    } else if (user.name == "Scissors") {
-      return computer.name == "Paper" ? "WIN" : "LOSE";
-    } else if (user.name == "Paper") {
-      return computer.name == "Rock" ? "WIN" : "LOSE";
+    } else if (user.name === "Rock") {
+      return computer.name === "Scissors" ? "WIN" : "LOSE";
+    } else if (user.name === "Scissors") {
+      return computer.name === "Paper" ? "WIN" : "LOSE";
+    } else if (user.name === "Paper") {
+      return computer.name === "Rock" ? "WIN" : "LOSE";
     }
   }
 
   const computerJudgement = (user, computer) => {
-    if (user.name == computer.name) {
+    if (user.name === computer.name) {
       return "TIE"
-    } else if (computer.name == "Rock") {
-      return user.name == "Scissors" ? "WIN" : "LOSE";
-    } else if (computer.name == "Scissors") {
-      return user.name == "Paper" ? "WIN" : "LOSE";
-    } else if (computer.name == "Paper") {
-      return user.name == "Rock" ? "WIN" : "LOSE";
+    } else if (computer.name === "Rock") {
+      return user.name === "Scissors" ? "WIN" : "LOSE";
+    } else if (computer.name === "Scissors") {
+      return user.name === "Paper" ? "WIN" : "LOSE";
+    } else if (computer.name === "Paper") {
+      return user.name === "Rock" ? "WIN" : "LOSE";
     }
   }
 
   const className = (judgement) => {
     console.log("judgement", judgement);
-    if (judgement == "WIN") {
+    if (judgement === "WIN") {
       return "box-win"
-    } else if (judgement == "LOSE") {
+    } else if (judgement === "LOSE") {
       return "box-lose"
     } else {
       return "box"
